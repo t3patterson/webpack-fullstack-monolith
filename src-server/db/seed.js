@@ -25,9 +25,13 @@ connectToDB(PROJECT_NAME, (err, result)=>{
 		//   SEED ACTION ON EACH RECORD HERE
 		// 	dataRecord.sold = false 
       let record = new SomeModel(dataRecord)
+		let saveCount = 0
 		record.save((err, savedRecord)=>{
 			if (err) console.log(err)
 			console.log('saved: ' + savedRecord._id )
+			if(++saveCount === dataSet.length) {
+				process.exit()
+			}
 		 }) 
 	})
 

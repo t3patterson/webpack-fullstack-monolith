@@ -2,7 +2,7 @@ const UserModel = Backbone.Model.extend({
 })
 
 UserModel.logIn =  function(email, pw){
-	if(typeof email !== 'string' || typeof password !== 'string'  ){ throw new Error(`UserModel.login() must receive string 2 string paramaters for email and password`) }
+	if(typeof email !== 'string' || typeof pw !== 'string'  ){ throw new Error(`UserModel.login() must receive string 2 string paramaters for email and password`) }
 
 	return $.ajax({
 		method: 'POST',
@@ -31,7 +31,6 @@ UserModel.register =  function(data){
 UserModel.getCurrentUser =  function(){
 	return $.ajax({
 		method: 'GET',
-		data: JSON.stringify({ email: email, password: pw}),
 		headers: {
 			'Content-Type': 'application/json'
 		},
