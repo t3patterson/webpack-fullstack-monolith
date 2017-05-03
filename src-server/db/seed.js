@@ -21,19 +21,17 @@ let chirpSet = [
 
 console.log('connecting to db.....', PROJECT_NAME)
 connectToDB(PROJECT_NAME, (err, result)=>{
-	dataSet.forEach((dataRecord)=>{
-		//   SEED ACTION ON EACH RECORD HERE
-		// 	dataRecord.sold = false 
+	  SomeModel.remove({}, () => {
+    dataSet.forEach((dataRecord) => {
+  		//   SEED ACTION ON EACH RECORD HERE
       let record = new SomeModel(dataRecord)
-		let saveCount = 0
-		record.save((err, savedRecord)=>{
-			if (err) console.log(err)
-			console.log('saved: ' + savedRecord._id )
-			if(++saveCount === dataSet.length) {
-				process.exit()
-			}
-		 }) 
-	})
-
+  		record.save((err, savedRecord) => {
+  			if (err) console.log(err)
+  			console.log('saved: ' + savedRecord._id )
+        if(++savedRecordCount === dataSet.length) process.exit()
+  		 }) 
+  	})
+  })
+	
 	
 })
